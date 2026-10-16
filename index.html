@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Core Java Lab Journal — practical index and embedded PDF viewer.">
+  <title>Core Java Lab Journal</title>
+  <style>
+    :root { --navy:#14213d; --blue:#2563eb; --bg:#f3f6fb; --ink:#172033; --muted:#64748b; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Arial, Helvetica, sans-serif; background:var(--bg); color:var(--ink); }
+    header { background:linear-gradient(120deg,#14213d,#2563eb); color:white; padding:34px 20px; }
+    .wrap { max-width:1120px; margin:auto; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.13em; font-size:.78rem; opacity:.85; }
+    h1 { margin:10px 0; font-size:clamp(1.8rem,4vw,2.7rem); }
+    header p { margin:0; line-height:1.6; max-width:760px; color:#e6edff; }
+    main { max-width:1120px; margin:24px auto; padding:0 18px 30px; }
+    .actions { display:flex; flex-wrap:wrap; gap:10px; margin:18px 0 22px; }
+    a.btn { display:inline-block; padding:11px 16px; border-radius:9px; background:var(--blue); color:white; text-decoration:none; font-weight:700; }
+    a.btn.secondary { background:white; color:var(--navy); border:1px solid #d8e0ef; }
+    .layout { display:grid; grid-template-columns:300px minmax(0,1fr); gap:18px; align-items:start; }
+    .panel { background:white; border:1px solid #e1e7f0; border-radius:14px; padding:20px; box-shadow:0 5px 18px #1e293b0a; }
+    h2 { margin:0 0 12px; font-size:1.15rem; }
+    .details { color:var(--muted); line-height:1.7; font-size:.94rem; }
+    .search { width:100%; padding:11px 12px; border:1px solid #cbd5e1; border-radius:8px; margin:4px 0 12px; font-size:1rem; }
+    ul { padding-left:20px; margin:0; }
+    li { margin:0 0 10px; line-height:1.45; }
+    .viewer { padding:0; overflow:hidden; }
+    .viewer-head { padding:16px 20px; border-bottom:1px solid #e1e7f0; display:flex; justify-content:space-between; gap:12px; align-items:center; flex-wrap:wrap; }
+    .viewer-head h2 { margin:0; }
+    .pdf-frame { display:block; width:100%; height:76vh; min-height:520px; border:0; background:#e2e8f0; }
+    .note { margin-top:14px; font-size:.88rem; color:var(--muted); line-height:1.55; }
+    footer { text-align:center; padding:20px; color:var(--muted); font-size:.88rem; }
+    @media (max-width:800px) { .layout { grid-template-columns:1fr; } .pdf-frame { height:68vh; min-height:420px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="eyebrow">Department of Computer Science</div>
+      <h1>Core Java Lab Journal</h1>
+      <p>Major Elective Practical I · B.Sc. Computer Science · Semester V · Academic Year 2026–2027</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="actions">
+      <a class="btn" href="Core%20Java%20Journal1(1).pdf" target="_blank" rel="noopener">Open PDF in New Tab</a>
+      <a class="btn secondary" href="Core%20Java%20Journal1(1).pdf" download>Download Journal PDF</a>
+    </div>
+
+    <div class="layout">
+      <aside class="panel">
+        <h2>About this journal</h2>
+        <p class="details">This website contains the uploaded Core Java practical journal. Use the PDF viewer to read the journal, or search the practical list below.</p>
+        <h2 style="margin-top:22px">Practical index</h2>
+        <input class="search" id="search" type="search" placeholder="Search practicals..." aria-label="Search practicals">
+        <ul id="practicals">
+          <li>Primitive data types</li>
+          <li>Maximum of three command-line numbers</li>
+          <li>Branching statements: if, if-else, switch</li>
+          <li>Looping statements: for, while, do-while</li>
+          <li>Implicit and explicit type casting</li>
+          <li>Constructor and this keyword</li>
+          <li>Static variable and static method</li>
+          <li>Inheritance</li>
+          <li>Method overloading and overriding</li>
+          <li>Shape interface and area calculations</li>
+          <li>Abstract class and abstract method</li>
+          <li>College package: Student and Staff</li>
+          <li>Exception handling with try-catch</li>
+          <li>Threads: Thread class and Runnable</li>
+          <li>AWT layout managers</li>
+          <li>GUI counter using Label and Button</li>
+          <li>AWT calculator</li>
+          <li>Temperature converter GUI</li>
+          <li>Previous and next number using Swing</li>
+          <li>Simple Swing calculator</li>
+        </ul>
+      </aside>
+
+      <section class="panel viewer" aria-label="PDF journal viewer">
+        <div class="viewer-head">
+          <h2>Journal PDF</h2>
+          <span class="details">34 pages</span>
+        </div>
+        <iframe class="pdf-frame" src="Core%20Java%20Journal1(1).pdf" title="Core Java Lab Journal PDF">
+          Your browser does not support embedded PDFs. Use the Open PDF button above.
+        </iframe>
+      </section>
+    </div>
+    <p class="note">If the PDF preview does not appear, keep the PDF file in the same folder as this HTML file and use “Open PDF in New Tab”.</p>
+  </main>
+  <footer>Core Java Lab Journal · Educational project website</footer>
+  <script>
+    const search = document.getElementById('search');
+    const items = [...document.querySelectorAll('#practicals li')];
+    search.addEventListener('input', () => {
+      const term = search.value.toLowerCase().trim();
+      items.forEach(item => item.hidden = !item.textContent.toLowerCase().includes(term));
+    });
+  </script>
+</body>
+</html>
